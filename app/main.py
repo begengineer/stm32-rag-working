@@ -206,7 +206,7 @@ class STMicroRAGApp:
         render_tips_panel(tips)
         
         # メインコンテンツ
-        tab1, tab2, tab3, tab4, tab5 = st.tabs(["💬 Q&A", "⚡ コード生成", "🔍 ドキュメント検索", "📊 マイコン情報", "🔧 デバッグ"])
+        tab1, tab2, tab3, tab4 = st.tabs(["💬 Q&A", "⚡ コード生成", "🔍 ドキュメント検索", "📊 マイコン情報"])
         
         with tab1:
             self.render_qa_tab(selected_mc)
@@ -219,9 +219,6 @@ class STMicroRAGApp:
         
         with tab4:
             self.render_microcontroller_info_tab(selected_mc)
-        
-        with tab5:
-            self.render_debug_tab()
     
     def render_qa_tab(self, microcontroller: str):
         """Q&Aタブのレンダリング"""
@@ -346,10 +343,6 @@ class STMicroRAGApp:
             if recommendation["recommended"] == microcontroller:
                 st.success(f"**{use_case.title()}用途:** {recommendation['reason']}")
     
-    def render_debug_tab(self):
-        """デバッグタブのレンダリング"""
-        from debug_api import debug_openai_api
-        debug_openai_api()
     
     def run(self):
         """アプリケーションの実行"""
